@@ -1,11 +1,30 @@
+#app {
+    width: 100%;
+    height: 100%;
+}
+
 #tetrjs-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+    .pane {
+        border: 1px dashed darkgreen;
+    }
     
-    .grid-block {
-        border: 1px solid black;
+    #main-pane {
+        
+        .grid-block {
+            border: 1px solid black;
+        }
+
     }
 
-    div {
-        color:red;
+    #info-group {
+
     }
+
+
 }
 

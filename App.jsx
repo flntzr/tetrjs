@@ -15,9 +15,11 @@ class GameScene extends React.Component {
         return (
             <div id="tetrjs-container">
                 <MainPane/>
-                <ScorePane/>
-                <NextPane/>
-                <LevelPane/>
+                <div id="info-group">
+                    <ScorePane/>
+                    <NextPane/>
+                    <LevelPane/>
+                </div>
             </div>
         );
     }
