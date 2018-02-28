@@ -13,7 +13,7 @@ class App extends React.Component {
 class GameScene extends React.Component {
     render() {
         return (
-            <div>
+            <div id="tetrjs-container">
                 <MainPane/>
                 <ScorePane/>
                 <NextPane/>
