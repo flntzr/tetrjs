@@ -14,7 +14,9 @@
     }
     
     #main-pane {
-        
+        min-width: 20em;
+        min-height: 32em;
+
         .grid-block {
             border: 1px solid black;
         }
@@ -22,9 +24,11 @@
     }
 
     #info-group {
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 1em;
     }
-
 
 }
 
