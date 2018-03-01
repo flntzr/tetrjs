@@ -11,17 +11,53 @@ class App extends React.Component {
 }
 
 class GameScene extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { 
+            score: 0,
+            level: 0
+        };
+    }
+
     render() {
         return (
             <div id="tetrjs-container">
                 <MainPane/>
                 <div id="info-group">
-                    <ScorePane/>
+                    <ScorePane score={this.state.score}/>
                     <NextPane/>
-                    <LevelPane/>
+                    <LevelPane level={this.state.level}/>
                 </div>
+                <TestPane fun={this.incLevel.bind(this)}/>
             </div>
         );
+    }
+
+    incLevel() {
+        this.setState((prevState, props) => {
+            prevState.level++;
+            return prevState;
+        });
+    }
+}
+
+class TestPane extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
+    render() {
+        return (
+            <div id="test-pane" class="pane">
+                TEST-PANE<br/>
+                <button onClick={this.handleClick.bind(this)}>CLICKME</button>
+            </div>
+        );
+    }
+
+    handleClick() {
+        console.log("CLICK");
+        this.props.fun();
     }
 }
 
@@ -39,7 +75,7 @@ class ScorePane extends React.Component {
     render() {
         return (
             <div id="score-pane" class="pane">
-                SCORE-PANE
+                SCORE-PANE: { this.props.score }
             </div>
         );
     }
@@ -59,7 +95,7 @@ class LevelPane extends React.Component {
     render() {
         return (
             <div id="level-pane" class="pane">
-                LEVEL-PANE
+                LEVEL-PANE: { this.props.level }
             </div>
         );
     }
