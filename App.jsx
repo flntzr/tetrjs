@@ -11,7 +11,7 @@ class App extends React.Component {
    }
 }
 
-class GameScene extends React.PureComponent {
+class GameScene extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
