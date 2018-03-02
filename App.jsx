@@ -1,4 +1,5 @@
 import React from 'react';
+import GridBlock from './Block.jsx';
 
 class App extends React.Component {
    render() {
@@ -17,13 +18,13 @@ class GameScene extends React.Component {
             score: 0,
             level: 0,
             grid: [
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+                0, 0, 0, 2, 2, 0, 0, 0, 0, 0,
+                0, 0, 0, 3, 3, 0, 0, 0, 0, 0,
+                0, 0, 0, 4, 4, 0, 0, 0, 0, 0,
+                0, 0, 0, 5, 5, 0, 0, 0, 0, 0,
+                0, 0, 0, 6, 6, 0, 0, 0, 0, 0,
+                0, 0, 0, 7, 7, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -40,7 +41,7 @@ class GameScene extends React.Component {
     render() {
         return (
             <div id="tetrjs-container">
-                <MainPane/>
+                <MainPane grid={this.state.grid}/>
                 <div id="info-group">
                     <ScorePane score={this.state.score}/>
                     <NextPane/>
@@ -81,9 +82,13 @@ class TestPane extends React.Component {
 
 class MainPane extends React.Component {
     render() {
+        let blocks = [];
+        for (let typeNum of this.props.grid) {
+            blocks.push(<GridBlock typeNum={typeNum}/>);
+        }
         return (
             <div id="main-pane" class="pane">
-                MAIN-PANE
+                {blocks}
             </div>
         );
     }

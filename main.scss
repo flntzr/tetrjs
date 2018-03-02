@@ -14,11 +14,43 @@
     }
     
     #main-pane {
-        min-width: 20em;
-        min-height: 32em;
+        width: 20em;
+        height: 32em;
+        display: flex;
+        flex-wrap: wrap;
 
         .grid-block {
             border: 1px solid black;
+            box-sizing: border-box;
+            width: 2em;
+            height: 2em;
+
+            &.block {
+                &-blank {
+                    background-color: lightgray;
+                }
+                &-a {
+                    background-color: red;
+                }
+                &-b {
+                    background-color: orange;
+                }
+                &-c {
+                    background-color: orangered;
+                }
+                &-d {
+                    background-color: gold;
+                }
+                &-e {
+                    background-color: forestgreen;
+                }
+                &-f {
+                    background-color: purple;
+                }
+                &-g {
+                    background-color: lightblue;
+                }
+            }
         }
 
     }
