@@ -1,13 +1,10 @@
 import React from 'react';
 import GridBlock from './Block.jsx';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
    render() {
-      return (
-         <div>
-            <GameScene/>
-         </div>
-      );
+      return <GameScene/>;
    }
 }
 
@@ -100,17 +97,22 @@ class ScorePane extends React.Component {
     render() {
         return (
             <div id="score-pane" className="pane">
-                SCORE-PANE: { this.props.score }
+                <b>SCORE</b><br/>
+                { this.props.score }
             </div>
         );
     }
+}
+
+ScorePane.propTypes = {
+    score: PropTypes.number.isRequired
 }
 
 class NextPane extends React.Component {
     render() {
         return (
             <div id="next-pane" className="pane">
-                NEXT-PANE
+                <b>NEXT</b>
             </div>
         );
     }
@@ -120,10 +122,15 @@ class LevelPane extends React.Component {
     render() {
         return (
             <div id="level-pane" className="pane">
-                LEVEL-PANE: { this.props.level }
+                <b>LEVEL</b><br/>
+                { this.props.level }
             </div>
         );
     }
+}
+
+LevelPane.propTypes = {
+    level: PropTypes.number.isRequired
 }
 
 export default App;
