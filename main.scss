@@ -20,34 +20,42 @@
         flex-wrap: wrap;
 
         .grid-block {
-            border: 1px solid black;
+            border: 1px solid gray;
             box-sizing: border-box;
             width: 2em;
             height: 2em;
+            $active-border-color: black;
 
             &.block {
                 &-blank {
                     background-color: lightgray;
                 }
                 &-a {
+                    border-color: $active-border-color;
                     background-color: red;
                 }
                 &-b {
+                    border-color: $active-border-color;
                     background-color: orange;
                 }
                 &-c {
+                    border-color: $active-border-color;
                     background-color: orangered;
                 }
                 &-d {
+                    border-color: $active-border-color;
                     background-color: gold;
                 }
                 &-e {
+                    border-color: $active-border-color;
                     background-color: forestgreen;
                 }
                 &-f {
+                    border-color: $active-border-color;
                     background-color: purple;
                 }
                 &-g {
+                    border-color: $active-border-color;
                     background-color: lightblue;
                 }
             }
