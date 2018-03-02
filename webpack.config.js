@@ -6,6 +6,7 @@ var config = {
    output: {
       path:'/',
       filename: 'index.js',
+      libraryExport: 'default'
    },
    devServer: {
       inline: true,
