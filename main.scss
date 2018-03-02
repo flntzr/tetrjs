@@ -22,8 +22,8 @@
         .grid-block {
             border: 1px solid gray;
             box-sizing: border-box;
-            width: 2em;
-            height: 2em;
+            width: calc(100% / 10);
+            height: calc(100% / 16);
             $active-border-color: black;
 
             &.block {
