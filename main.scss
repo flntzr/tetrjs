@@ -13,6 +13,46 @@
         border: 1px dashed darkgreen;
     }
     
+    .grid-block {
+        border: 1px solid gray;
+        box-sizing: border-box;
+        $active-border-color: black;
+
+        &.block {
+            &-blank {
+                background-color: lightgray;
+            }
+            &-a {
+                border-color: $active-border-color;
+                background-color: red;
+            }
+            &-b {
+                border-color: $active-border-color;
+                background-color: orange;
+            }
+            &-c {
+                border-color: $active-border-color;
+                background-color: orangered;
+            }
+            &-d {
+                border-color: $active-border-color;
+                background-color: gold;
+            }
+            &-e {
+                border-color: $active-border-color;
+                background-color: forestgreen;
+            }
+            &-f {
+                border-color: $active-border-color;
+                background-color: purple;
+            }
+            &-g {
+                border-color: $active-border-color;
+                background-color: lightblue;
+            }
+        }
+    }
+
     #main-pane {
         width: 20em;
         height: 32em;
@@ -20,45 +60,20 @@
         flex-wrap: wrap;
 
         .grid-block {
-            border: 1px solid gray;
-            box-sizing: border-box;
             width: calc(100% / 10);
             height: calc(100% / 16);
-            $active-border-color: black;
+        }
+    }
 
-            &.block {
-                &-blank {
-                    background-color: lightgray;
-                }
-                &-a {
-                    border-color: $active-border-color;
-                    background-color: red;
-                }
-                &-b {
-                    border-color: $active-border-color;
-                    background-color: orange;
-                }
-                &-c {
-                    border-color: $active-border-color;
-                    background-color: orangered;
-                }
-                &-d {
-                    border-color: $active-border-color;
-                    background-color: gold;
-                }
-                &-e {
-                    border-color: $active-border-color;
-                    background-color: forestgreen;
-                }
-                &-f {
-                    border-color: $active-border-color;
-                    background-color: purple;
-                }
-                &-g {
-                    border-color: $active-border-color;
-                    background-color: lightblue;
-                }
-            }
+    #next-pane #next-block-preview {
+        width: 4em;
+        height: 4em;
+        display: flex;
+        flex-wrap: wrap;
+
+        .grid-block {
+            width: calc(100% / 4);
+            height: calc(100% / 4);
         }
 
     }

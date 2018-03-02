@@ -1,6 +1,7 @@
 import React from 'react';
 import GridBlock from './Block.jsx';
 import PropTypes from 'prop-types';
+import {Shapes} from './Shape.jsx';
 
 class App extends React.Component {
    render() {
@@ -31,7 +32,9 @@ class GameScene extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-            ]
+            ],
+            nextShape: 0,
+            rotation: 0
         };
     }
 
@@ -41,7 +44,7 @@ class GameScene extends React.Component {
                 <MainPane grid={this.state.grid}/>
                 <div id="info-group">
                     <ScorePane score={this.state.score}/>
-                    <NextPane/>
+                    <NextPane nextShape={this.state.nextShape}/>
                     <LevelPane level={this.state.level}/>
                 </div>
                 <TestPane fun={this.incLevel.bind(this)}/>
@@ -110,9 +113,19 @@ ScorePane.propTypes = {
 
 class NextPane extends React.Component {
     render() {
+        let grid = this.props.nextShape != null ? Shapes[this.props.nextShape][0]: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        let blocks = [];
+        let i = 0;
+        for (let typeNum of grid) {
+            blocks.push(<GridBlock key={i} typeNum={typeNum}/>);
+            i++;
+        }
         return (
             <div id="next-pane" className="pane">
-                <b>NEXT</b>
+                <b>NEXT</b><br/>
+                <div id='next-block-preview'>
+                    {blocks}
+                </div>
             </div>
         );
     }
