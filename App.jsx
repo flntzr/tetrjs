@@ -11,7 +11,7 @@ class App extends React.Component {
    }
 }
 
-class GameScene extends React.Component {
+class GameScene extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = { 
@@ -67,7 +67,7 @@ class TestPane extends React.Component {
     
     render() {
         return (
-            <div id="test-pane" class="pane">
+            <div id="test-pane" className="pane">
                 TEST-PANE<br/>
                 <button onClick={this.handleClick.bind(this)}>CLICKME</button>
             </div>
@@ -83,11 +83,13 @@ class TestPane extends React.Component {
 class MainPane extends React.Component {
     render() {
         let blocks = [];
+        let i = 0;
         for (let typeNum of this.props.grid) {
-            blocks.push(<GridBlock typeNum={typeNum}/>);
+            blocks.push(<GridBlock key={i} typeNum={typeNum}/>);
+            i++;
         }
         return (
-            <div id="main-pane" class="pane">
+            <div id="main-pane" className="pane">
                 {blocks}
             </div>
         );
@@ -97,7 +99,7 @@ class MainPane extends React.Component {
 class ScorePane extends React.Component {
     render() {
         return (
-            <div id="score-pane" class="pane">
+            <div id="score-pane" className="pane">
                 SCORE-PANE: { this.props.score }
             </div>
         );
@@ -107,7 +109,7 @@ class ScorePane extends React.Component {
 class NextPane extends React.Component {
     render() {
         return (
-            <div id="next-pane" class="pane">
+            <div id="next-pane" className="pane">
                 NEXT-PANE
             </div>
         );
@@ -117,7 +119,7 @@ class NextPane extends React.Component {
 class LevelPane extends React.Component {
     render() {
         return (
-            <div id="level-pane" class="pane">
+            <div id="level-pane" className="pane">
                 LEVEL-PANE: { this.props.level }
             </div>
         );
