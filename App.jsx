@@ -33,7 +33,8 @@ class GameScene extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            nextShape: 0,
+            activeShape: null,
+            nextShapeNum: 0,
             rotation: 0
         };
     }
@@ -44,10 +45,10 @@ class GameScene extends React.Component {
                 <MainPane grid={this.state.grid}/>
                 <div id="info-group">
                     <ScorePane score={this.state.score}/>
-                    <NextPane nextShape={this.state.nextShape}/>
+                    <NextPane nextShape={this.state.nextShapeNum}/>
                     <LevelPane level={this.state.level}/>
                 </div>
-                <TestPane fun={this.incLevel.bind(this)}/>
+                <TestPane fun={this.incLevel.bind(this)} startGameFun={this.startMainLoop.bind(this)}/>
             </div>
         );
     }
@@ -57,6 +58,10 @@ class GameScene extends React.Component {
             prevState.level++;
             return prevState;
         });
+    }
+
+    startMainLoop() {
+        this.requestAnimationFrame(mainLoop);
     }
 }
 
@@ -69,22 +74,21 @@ class TestPane extends React.Component {
         return (
             <div id="test-pane" className="pane">
                 TEST-PANE<br/>
-                <button onClick={this.handleClick.bind(this)}>CLICKME</button>
+                <button onClick={this.startMainLoop.bind(this)}>Start Game</button>
             </div>
         );
     }
 
-    handleClick() {
-        console.log("CLICK");
-        this.props.fun();
+    startMainLoop() {
+        this.props.startGameFun();
     }
 }
 
 class MainPane extends React.Component {
     render() {
-        let blocks = [];
+        const blocks = [];
         let i = 0;
-        for (let typeNum of this.props.grid) {
+        for (const typeNum of this.props.grid) {
             blocks.push(<GridBlock key={i} typeNum={typeNum}/>);
             i++;
         }
@@ -113,10 +117,10 @@ ScorePane.propTypes = {
 
 class NextPane extends React.Component {
     render() {
-        let grid = this.props.nextShape != null ? Shapes[this.props.nextShape][0]: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        let blocks = [];
+        const grid = this.props.nextShape != null ? Shapes[this.props.nextShape][0]: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        const blocks = [];
         let i = 0;
-        for (let typeNum of grid) {
+        for (const typeNum of grid) {
             blocks.push(<GridBlock key={i} typeNum={typeNum}/>);
             i++;
         }
