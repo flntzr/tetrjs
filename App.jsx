@@ -1,9 +1,9 @@
 import React from 'react';
-import MainPane from './MainPane.jsx';
-import LevelPane from './LevelPane.jsx'
-import ScorePane from './ScorePane.jsx';
-import NextPane from './NextPane.jsx';
-import TestPane from './TestPane.jsx';
+import MainPane from './components/MainPane.jsx';
+import LevelPane from './components/LevelPane.jsx'
+import ScorePane from './components/ScorePane.jsx';
+import NextPane from './components/NextPane.jsx';
+import TestPane from './components/TestPane.jsx';
 
 class App extends React.Component {
    render() {
