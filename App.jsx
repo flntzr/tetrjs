@@ -4,6 +4,7 @@ import LevelPane from './components/LevelPane.jsx'
 import ScorePane from './components/ScorePane.jsx';
 import NextPane from './components/NextPane.jsx';
 import StartGamePane from './components/StartGamePane.jsx';
+import KeyPressListeners from './components/CommandPressHandler.jsx';
 
 class App extends React.Component {
    render() {
@@ -51,6 +52,7 @@ class GameScene extends React.Component {
                     <ScorePane score={this.state.score}/>
                     <NextPane nextShape={this.state.nextShapeNum}/>
                     <LevelPane level={this.state.level}/>
+                    <KeyPressListeners onCommandPressFun={this.onCommandPress.bind(this)}/>
                 </div>
                 <StartGamePane hasGameStarted={this.state.hasGameStarted} /*fun={this.incLevel.bind(this)}*/ startGameFun={this.startGame.bind(this)}/>
             </div>
@@ -70,6 +72,10 @@ class GameScene extends React.Component {
             prevState.hasGameStarted = true;
             return prevState;
         });
+    }
+
+    onCommandPress(command) {
+        this.incLevel();
     }
 }
 
