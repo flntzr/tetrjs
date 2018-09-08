@@ -1,4 +1,4 @@
-export var Shapes = [
+export var Shapes = Object.freeze([
     [
         [
             0,1,0,0,
@@ -181,4 +181,11 @@ export var Shapes = [
             0,0,0,0
         ]
     ]
-];
+]);
+
+export var EmptyShape = Object.freeze([
+    0,0,0,0,
+    0,0,0,0,
+    0,0,0,0,
+    0,0,0,0
+])
