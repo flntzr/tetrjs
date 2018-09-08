@@ -37,7 +37,9 @@ class GameScene extends React.Component {
             ],
             activeShape: null,
             nextShapeNum: 0,
-            rotation: 0
+            rotation: 0,
+            hasGameStarted: false,
+            isGamePaused: false
         };
     }
 
@@ -50,7 +52,7 @@ class GameScene extends React.Component {
                     <NextPane nextShape={this.state.nextShapeNum}/>
                     <LevelPane level={this.state.level}/>
                 </div>
-                <StartGamePane fun={this.incLevel.bind(this)} startGameFun={this.startMainLoop.bind(this)}/>
+                <StartGamePane hasGameStarted={this.state.hasGameStarted} /*fun={this.incLevel.bind(this)}*/ startGameFun={this.startGame.bind(this)}/>
             </div>
         );
     }
@@ -62,8 +64,12 @@ class GameScene extends React.Component {
         });
     }
 
-    startMainLoop() {
-        this.requestAnimationFrame(mainLoop);
+    startGame() {
+        this.setState((prevState, props) => {
+            prevState.isGamePaused = false;
+            prevState.hasGameStarted = true;
+            return prevState;
+        });
     }
 }
 

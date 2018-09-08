@@ -6,15 +6,18 @@ export default class StartGamePane extends React.Component {
     }
     
     render() {
+        if (this.props.hasGameStarted) {
+            return null;
+        }
         return (
-            <div id="test-pane" className="pane">
-                TEST-PANE<br/>
-                <button onClick={this.startMainLoop.bind(this)}>Start Game</button>
+            <div id="start-game-pane" className="pane">
+                START-GAME-PANE<br/>
+                <button onClick={this.startGame.bind(this)}>Start Game</button>
             </div>
         );
     }
 
-    startMainLoop() {
+    startGame() {
         this.props.startGameFun();
     }
 }
