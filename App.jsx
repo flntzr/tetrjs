@@ -3,7 +3,7 @@ import MainPane from './components/MainPane.jsx';
 import LevelPane from './components/LevelPane.jsx'
 import ScorePane from './components/ScorePane.jsx';
 import NextPane from './components/NextPane.jsx';
-import TestPane from './components/TestPane.jsx';
+import StartGamePane from './components/StartGamePane.jsx';
 
 class App extends React.Component {
    render() {
@@ -50,7 +50,7 @@ class GameScene extends React.Component {
                     <NextPane nextShape={this.state.nextShapeNum}/>
                     <LevelPane level={this.state.level}/>
                 </div>
-                <TestPane fun={this.incLevel.bind(this)} startGameFun={this.startMainLoop.bind(this)}/>
+                <StartGamePane fun={this.incLevel.bind(this)} startGameFun={this.startMainLoop.bind(this)}/>
             </div>
         );
     }

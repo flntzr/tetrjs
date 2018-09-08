@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class TestPane extends React.Component {
+export default class StartGamePane extends React.Component {
     constructor(props) {
         super(props);
     }
