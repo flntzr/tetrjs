@@ -4,7 +4,8 @@ import LevelPane from './components/LevelPane.jsx'
 import ScorePane from './components/ScorePane.jsx';
 import NextPane from './components/NextPane.jsx';
 import StartGamePane from './components/StartGamePane.jsx';
-import KeyPressListeners, {ARROW_COMMANDS} from './components/CommandPressHandler.jsx';
+import KeyPressListeners from './components/CommandPressHandler.jsx';
+import {ARROW_COMMANDS, SPECIAL_COMMANDS, PLAYING_FIELD_BOUNDS} from './components/Constants.jsx';
 
 class App extends React.Component {
    render() {
@@ -81,21 +82,32 @@ class GameScene extends React.Component {
         let yModifier = 0;
         switch(command) {
             case ARROW_COMMANDS.ArrowUp:
-                // TODO: implement turning  
+                this.turnActiveBlock();
                 return;
             case ARROW_COMMANDS.ArrowRight:
                 xModifier = 1;
-                return this.onRepositionActiveBlock(xModifier, yModifier);
+                this.repositionActiveBlock(xModifier, yModifier);
+                return;
             case ARROW_COMMANDS.ArrowDown:
                 yModifier = 1;
-                return this.onRepositionActiveBlock(xModifier, yModifier);
+                this.repositionActiveBlock(xModifier, yModifier);
+                return;
             case ARROW_COMMANDS.ArrowLeft:
                 xModifier = -1;
-                return this.onRepositionActiveBlock(xModifier, yModifier);
+                this.repositionActiveBlock(xModifier, yModifier);
+                return;
         }
     }
 
-    onRepositionActiveBlock(xModifier, yModifier) {
+    onSpecialCommandPress(command) {
+        if (command === SPECIAL_COMMANDS.Space) {
+            this.repositionActiveBlock(0, 1000);
+        } else if (command === SPECIAL_COMMANDS.Escape) {
+            // TODO: pause/unpause game
+        }
+    }
+
+    repositionActiveBlock(xModifier, yModifier) {
         this.setState((prevState, props) => {
             prevState.activeShapeX += xModifier;
             prevState.activeShapeY += yModifier;
@@ -103,8 +115,12 @@ class GameScene extends React.Component {
         });
     }
 
-    onSpecialCommandPress(command) {
-        this.incLevel();
+    turnActiveBlock() {
+        this.setState((prevState, props) => {
+            prevState.rotation++;
+            prevState %= 4;
+            return prevState;
+        });
     }
 }
 

@@ -1,20 +1,6 @@
 import React from 'react';
+import {ARROW_COMMANDS, SPECIAL_COMMANDS} from './Constants.jsx';
 
-export var ARROW_COMMANDS = Object.freeze({
-    ArrowUp: 0,
-    ArrowRight: 1,
-    ArrowDown: 2,
-    ArrowLeft: 3
-});
-
-export var SPECIAL_COMMANDS = Object.freeze({
-    Space: 4,
-    Escape: 5
-});
-
-// export var KEY_COMMANDS = Object.freeze(
-//     ARROW_COMMANDS.concat(SPECIAL_COMMANDS)
-// );
 
 export default class KeyPressListeners extends React.Component {
     constructor(props) {

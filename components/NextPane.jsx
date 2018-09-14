@@ -1,10 +1,10 @@
 import React from 'react';
 import GridBlock from './Block.jsx';
-import {Shapes, EmptyShape} from './Shape.jsx';
+import {SHAPES, EMPTY_SHAPE} from './Constants.jsx';
 
 export default class NextPane extends React.Component {
     render() {
-        const grid = this.props.nextShape != null ? Shapes[this.props.nextShape][0]: EmptyShape;
+        const grid = this.props.nextShape != null ? SHAPES[this.props.nextShape][0]: EMPTY_SHAPE;
         const blocks = [];
         let i = 0;
         for (const typeNum of grid) {

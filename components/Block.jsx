@@ -1,21 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-var ColorsEnum = Object.freeze([
-    "block-blank",
-    "block-a",
-    "block-b",
-    "block-c",
-    "block-d",
-    "block-e",
-    "block-f",
-    "block-g"
-
-]);
+import {BLOCK_TYPES} from './Constants.jsx';
 
 export default class GridBlock extends React.Component {
     render() {
-        let blockClass =  ColorsEnum[this.props.typeNum];
+        let blockClass = BLOCK_TYPES[this.props.typeNum];
         return (
             <div className={"grid-block " + blockClass}>
             </div>

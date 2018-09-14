@@ -1,4 +1,4 @@
-export var Shapes = Object.freeze([
+export var SHAPES = Object.freeze([
     [
         [
             0,1,0,0,
@@ -183,9 +183,39 @@ export var Shapes = Object.freeze([
     ]
 ]);
 
-export var EmptyShape = Object.freeze([
+export var EMPTY_SHAPE = Object.freeze([
     0,0,0,0,
     0,0,0,0,
     0,0,0,0,
     0,0,0,0
-])
+]);
+
+export var BLOCK_TYPES = Object.freeze([
+    "block-blank",
+    "block-a",
+    "block-b",
+    "block-c",
+    "block-d",
+    "block-e",
+    "block-f",
+    "block-g"
+]);
+
+export var ARROW_COMMANDS = Object.freeze({
+    ArrowUp: 0,
+    ArrowRight: 1,
+    ArrowDown: 2,
+    ArrowLeft: 3
+});
+
+export var SPECIAL_COMMANDS = Object.freeze({
+    Space: 4,
+    Escape: 5
+});
+
+export var PLAYING_FIELD_BOUNDS = Object.freeze({
+    LEFT: 0,
+    RIGHT: 9,
+    TOP: 0,
+    BOTTOM: 15
+});
