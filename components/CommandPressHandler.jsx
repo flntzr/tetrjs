@@ -1,13 +1,20 @@
 import React from 'react';
 
-var KEY_COMMANDS = Object.freeze([
-    "ArrowUp",
-    "ArrowRight",
-    "ArrowDown",
-    "ArrowLeft",
-    "Space",
-    "Escape"
-]);
+export var ARROW_COMMANDS = Object.freeze({
+    ArrowUp: 0,
+    ArrowRight: 1,
+    ArrowDown: 2,
+    ArrowLeft: 3
+});
+
+export var SPECIAL_COMMANDS = Object.freeze({
+    Space: 4,
+    Escape: 5
+});
+
+// export var KEY_COMMANDS = Object.freeze(
+//     ARROW_COMMANDS.concat(SPECIAL_COMMANDS)
+// );
 
 export default class KeyPressListeners extends React.Component {
     constructor(props) {
@@ -30,12 +37,18 @@ export default class KeyPressListeners extends React.Component {
     }
 
     onKeyDown(e) {
-        if (KEY_COMMANDS.indexOf(e.code) != -1) {
-            this.onCommandPress(e.code);
+        if (ARROW_COMMANDS[e.code] !== undefined) {
+            this.onArrowCommandPress(ARROW_COMMANDS[e.code]);
+        } else if (SPECIAL_COMMANDS[e.code] !== undefined) {
+            this.onSpecialCommandPress(SPECIAL_COMMANDS[e.code]);
         }
     };
 
-    onCommandPress(command) {
-        this.props.onCommandPressFun(command);
+    onArrowCommandPress(command) {
+        this.props.onArrowCommandPressFun(command);
+    }
+
+    onSpecialCommandPress(command) {
+        this.props.onSpecialCommandPressFun(command);
     }
 }
