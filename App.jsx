@@ -11,12 +11,6 @@ import {connect} from 'react-redux';
 import {exampleAction} from './actions/actions.js';
 
 class App extends React.Component {
-   render() {
-      return <GameScene/>;
-   }
-}
-
-class GameScene extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -113,6 +107,7 @@ class GameScene extends React.Component {
     }
 
     repositionActiveBlock(xModifier, yModifier) {
+        this.props.exampleAction();
         this.setState((prevState, props) => {
             prevState.activeShapeX += xModifier;
             prevState.activeShapeY += yModifier;

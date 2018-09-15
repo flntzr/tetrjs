@@ -35,7 +35,7 @@ const reducers = (state = initialState, action) => {
         case 'EXAMPLE':
             return {
                 ...state,
-                example: 'newExample!'
+                example: 101
             }
         default:
             return state;
