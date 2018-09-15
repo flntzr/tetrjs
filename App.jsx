@@ -34,12 +34,7 @@ class App extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            // TODO: put everything converning the activeShape into a nestedState
-            activeShape: null,
-            activeShapeX: 3,
-            activeShapeY: 0,
             nextShapeNum: 0,
-            rotation: 0,
             hasGameStarted: false,
             isGamePaused: false,
             example: 99

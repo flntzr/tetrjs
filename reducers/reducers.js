@@ -1,6 +1,6 @@
+import {ActionCodes} from './constants.js'
+
 const initialState = {
-    score: 0,
-    level: 0,
     grid: [
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -19,12 +19,15 @@ const initialState = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ],
-    // TODO: put everything converning the activeShape into a nestedState
-    activeShape: null,
-    activeShapeX: 3,
-    activeShapeY: 0,
+    activeShape: {
+        num: -1,
+        posX: 3,
+        posY: 0,
+        rotation: 0
+    },
     nextShapeNum: 0,
-    rotation: 0,
+    score: 0,
+    level: 0,
     hasGameStarted: false,
     isGamePaused: false,
     example: 99
@@ -36,6 +39,12 @@ const reducers = (state = initialState, action) => {
             return {
                 ...state,
                 example: 101
+            }
+        case ActionCodes.GAME_START:
+            return {
+                ...state,
+                hasGameStarted: true,
+                isGamePaused: false
             }
         default:
             return state;
