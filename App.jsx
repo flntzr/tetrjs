@@ -35,9 +35,8 @@ class App extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
             // nextShapeNum: 0,
-            hasGameStarted: false,
-            isGamePaused: false,
-            example: 99
+            // hasGameStarted: false,
+            // isGamePaused: false
         };
     }
 
@@ -119,15 +118,15 @@ class App extends React.Component {
     // }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         nextShapeNum: state.nextShapeNum
-//     }
-// }
+const mapStateToProps = (state) => {
+    return {
+        example: state.example
+    }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return bindActionCreators({exampleAction}, dispatch);
-// }
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({exampleAction}, dispatch);
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+// export default App;

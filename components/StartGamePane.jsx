@@ -14,10 +14,11 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({gameStartAction}, dispatch);
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
-export default class StartGamePane extends React.Component {
+// @connect(mapStateToProps, mapDispatchToProps)
+class StartGamePane extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {};
     }
     
     render() {
@@ -40,4 +41,4 @@ export default class StartGamePane extends React.Component {
 }
 
 
-// connect(mapStateToProps, mapDispatchToProps)(StartGamePane);
+export default connect(mapStateToProps, mapDispatchToProps)(StartGamePane);
