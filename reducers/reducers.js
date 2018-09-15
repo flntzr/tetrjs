@@ -30,16 +30,16 @@ const initialState = {
     level: 0,
     hasGameStarted: false,
     isGamePaused: false,
-    example: 99
+    // example: 99
 }
 
 const reducers = (state = initialState, action) => {
     switch (action.type) {
-        case 'EXAMPLE':
-            return {
-                ...state,
-                example: 101
-            }
+        // case 'EXAMPLE':
+        //     return {
+        //         ...state,
+        //         example: 101
+        //     }
         case ActionCodes.GAME_START:
             return {
                 ...state,

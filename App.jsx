@@ -34,7 +34,7 @@ class App extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            nextShapeNum: 0,
+            // nextShapeNum: 0,
             hasGameStarted: false,
             isGamePaused: false,
             example: 99
@@ -51,7 +51,7 @@ class App extends React.Component {
                     <LevelPane level={this.state.level}/>
                     <KeyPressListeners onArrowCommandPressFun={this.onArrowCommandPress.bind(this)} onSpecialCommandPressFun={this.onSpecialCommandPress.bind(this)}/>
                 </div>
-                <StartGamePane hasGameStarted={this.state.hasGameStarted} /*fun={this.incLevel.bind(this)}*/ startGameFun={this.startGame.bind(this)}/>
+                <StartGamePane/>
             </div>
         );
     }
@@ -101,33 +101,33 @@ class App extends React.Component {
         }
     }
 
-    repositionActiveBlock(xModifier, yModifier) {
-        this.props.exampleAction();
-        this.setState((prevState, props) => {
-            prevState.activeShapeX += xModifier;
-            prevState.activeShapeY += yModifier;
-            return prevState;
-        });
-    }
+    // repositionActiveBlock(xModifier, yModifier) {
+    //     this.props.exampleAction();
+    //     this.setState((prevState, props) => {
+    //         prevState.activeShapeX += xModifier;
+    //         prevState.activeShapeY += yModifier;
+    //         return prevState;
+    //     });
+    // }
 
-    turnActiveBlock() {
-        this.setState((prevState, props) => {
-            prevState.rotation++;
-            prevState %= 4;
-            return prevState;
-        });
-    }
+    // turnActiveBlock() {
+    //     this.setState((prevState, props) => {
+    //         prevState.rotation++;
+    //         prevState %= 4;
+    //         return prevState;
+    //     });
+    // }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        example: state.example
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         nextShapeNum: state.nextShapeNum
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({exampleAction}, dispatch);
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return bindActionCreators({exampleAction}, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default App;
+// export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
