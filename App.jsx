@@ -6,6 +6,9 @@ import NextPane from './components/NextPane.jsx';
 import StartGamePane from './components/StartGamePane.jsx';
 import KeyPressListeners from './components/CommandPressHandler.jsx';
 import {ARROW_COMMANDS, SPECIAL_COMMANDS, PLAYING_FIELD_BOUNDS} from './components/Constants.jsx';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {exampleAction} from './actions/actions.js';
 
 class App extends React.Component {
    render() {
@@ -37,13 +40,15 @@ class GameScene extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
+            // TODO: put everything converning the activeShape into a nestedState
             activeShape: null,
             activeShapeX: 3,
             activeShapeY: 0,
             nextShapeNum: 0,
             rotation: 0,
             hasGameStarted: false,
-            isGamePaused: false
+            isGamePaused: false,
+            example: 99
         };
     }
 
@@ -124,4 +129,15 @@ class GameScene extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        example: state.example
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({exampleAction}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 export default App;
