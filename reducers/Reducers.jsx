@@ -20,7 +20,7 @@ const initialState = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ],
     activeShape: {
-        num: -1,
+        num: 4,
         posX: 3,
         posY: 0,
         rotation: 0
@@ -78,6 +78,10 @@ const downReducer = (state) => {
 const rotateReducer = (state) => {
     return {
         ...state,
+        activeShape: {
+            ...state.activeShape,
+            rotation: (state.activeShape.rotation + 1) % 4
+        }
     }
 }
 const leftReducer = (state) => {
