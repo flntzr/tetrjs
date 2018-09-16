@@ -1,4 +1,5 @@
-import {ActionCodes} from '../actions/Constants.jsx'
+import {ActionCodes} from '../actions/Constants.jsx';
+import {SHAPES, GRID_WIDTH, GRID_HEIGHT, SHAPE_SIZE} from '../components/Constants.jsx';
 
 const initialState = {
     grid: [
@@ -70,45 +71,125 @@ const reducers = (state = initialState, action) => {
     }
 }
 
-const downReducer = (state) => {
-    return {
-        ...state,
+const isActiveShapeValid = (state) => {
+    const grid = Object.assign([], state.grid);
+    if (state.activeShape.num == -1) {
+        return true;
     }
+    const shapeGrid = SHAPES[state.activeShape.num][state.activeShape.rotation];
+    const minX = state.activeShape.posX;
+    const minY = state.activeShape.posY;
+    const maxX = Math.min(state.activeShape.posX + SHAPE_SIZE, GRID_WIDTH) - 1;
+    const maxY = Math.min(state.activeShape.posY + SHAPE_SIZE, GRID_HEIGHT) - 1;
+
+    // check if existing grid blocks collide with active shape
+    let isInvalid = false;
+    for (let y = minY; y <= maxY; y++) {
+        for (let x = minX; x <= maxX; x++) {
+            isInvalid = isInvalid || (shapeGrid[(y - minY) * SHAPE_SIZE + (x - minX)] && grid[y * GRID_WIDTH + x]);
+        }
+    }
+    
+    // check if active shape overflows
+    const isPixelValid = (x, y) => {
+        const shapeX = x - minX;
+        const shapeY = y - minY;
+        return !shapeGrid[shapeY * SHAPE_SIZE + shapeX];
+    }
+
+    // overflows top
+    for (let y = minY; y < 0; y++) {
+        for (let x = 0; x < SHAPE_SIZE; x++) {
+            isInvalid = isInvalid || !isPixelValid(x + minX, y);
+        }
+    }
+    // overflows left
+    for (let x = minX; x < 0; x++) {
+        for (let y = 0; y < SHAPE_SIZE; y++) {
+            isInvalid = isInvalid || !isPixelValid(x, y + minY);
+        }
+    }
+    // overflows right
+    for (let x = state.activeShape.posX + SHAPE_SIZE - 1; x >= GRID_WIDTH; x--) {
+        for (let y = 0; y < SHAPE_SIZE; y++) {
+            isInvalid = isInvalid || !isPixelValid(x, y + minY);
+        }
+    }
+    // overflows bottom
+    for (let y = state.activeShape.posY + SHAPE_SIZE - 1; y >= GRID_HEIGHT; y--) {
+        for (let x = 0; x < SHAPE_SIZE; x++) {
+            isInvalid = isInvalid || !isPixelValid(x + minX, y);
+        }
+    }
+    return !isInvalid;
 }
+
+const downReducer = (state) => {
+    const newState = {
+        ...state,
+        activeShape: {
+            ...state.activeShape,
+            posY: state.activeShape.posY + 1
+        }
+    }
+    const isValid = isActiveShapeValid(newState);
+    return isValid ? newState : state;
+}
+
 const rotateReducer = (state) => {
-    return {
+    const newState = {
         ...state,
         activeShape: {
             ...state.activeShape,
             rotation: (state.activeShape.rotation + 1) % 4
         }
     }
+    const isValid = isActiveShapeValid(newState);
+    return isValid ? newState : state;
 }
+
 const leftReducer = (state) => {
-    return {
+    const newState = {
         ...state,
+        activeShape: {
+            ...state.activeShape,
+            posX: state.activeShape.posX - 1
+        }
     }
+    const isValid = isActiveShapeValid(newState);
+    return isValid ? newState : state;
 }
+
 const rightReducer = (state) => {
-    return {
+    const newState = {
         ...state,
+        activeShape: {
+            ...state.activeShape,
+            posX: state.activeShape.posX + 1
+        }
     }
+    const isValid = isActiveShapeValid(newState);
+    return isValid ? newState : state;
 }
+
 const dropReducer = (state) => {
     return {
         ...state,
     }
 }
+
 const spawnReducer = (state) => {
     return {
         ...state,
     }
 }
+
 const popReducer = (state) => {
     return {
         ...state,
     }
 }
+
 const gameStartReducer = (state) => {
     return {
         ...state,
@@ -116,6 +197,7 @@ const gameStartReducer = (state) => {
         isGamePaused: false
     }
 }
+
 const gameOverReducer = (state) => {
     return {
         ...state,
@@ -123,6 +205,7 @@ const gameOverReducer = (state) => {
         isGamePaused: false
     }
 }
+
 const pauseReducer = (state) => {
     return {
         ...state,
