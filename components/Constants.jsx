@@ -210,6 +210,10 @@ export var USER_COMMANDS = Object.freeze({
     Escape: 5
 });
 
+export const SHAPE_SIZE = 4;
+export const GRID_WIDTH = 10;
+export const GRID_HEIGHT = 16;
+
 export var PLAYING_FIELD_BOUNDS = Object.freeze({
     LEFT: 0,
     RIGHT: 9,
