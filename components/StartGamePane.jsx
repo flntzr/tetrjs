@@ -30,7 +30,6 @@ class StartGamePane extends React.Component {
             <div id="start-game-pane" className="pane">
                 START-GAME-PANE<br/>
                 <button onClick={this.startGame.bind(this)}>Start Game</button>
-                {debugPropStr}
             </div>
         );
     }
