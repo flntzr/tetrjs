@@ -1,7 +1,8 @@
 import React from 'react';
 import GridBlock from './Block.jsx';
+import {connect} from 'react-redux';
 
-export default class MainPane extends React.Component {
+class MainPane extends React.Component {
     render() {
         const blocks = [];
         let i = 0;
@@ -16,3 +17,11 @@ export default class MainPane extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        grid: state.grid
+    }
+}
+
+export default connect(mapStateToProps, null)(MainPane);
