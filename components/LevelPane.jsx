@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export default class LevelPane extends React.Component {
+class LevelPane extends React.Component {
     render() {
         return (
             <div id="level-pane" className="pane">
@@ -15,3 +16,11 @@ export default class LevelPane extends React.Component {
 LevelPane.propTypes = {
     level: PropTypes.number.isRequired
 }
+
+const mapStateToProps = (state) => {
+    return {
+        level: state.level
+    }
+}
+
+export default connect(mapStateToProps, null)(LevelPane);

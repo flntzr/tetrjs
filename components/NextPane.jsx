@@ -1,10 +1,11 @@
 import React from 'react';
 import GridBlock from './Block.jsx';
 import {SHAPES, EMPTY_SHAPE} from './Constants.jsx';
+import {connect} from 'react-redux';
 
-export default class NextPane extends React.Component {
+class NextPane extends React.Component {
     render() {
-        const grid = this.props.nextShape != null ? SHAPES[this.props.nextShape][0]: EMPTY_SHAPE;
+        const grid = this.props.nextShapeNum != null ? SHAPES[this.props.nextShapeNum][0]: EMPTY_SHAPE;
         const blocks = [];
         let i = 0;
         for (const typeNum of grid) {
@@ -21,3 +22,11 @@ export default class NextPane extends React.Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        nextShapeNum: state.nextShapeNum
+    }
+}
+
+export default connect(mapStateToProps, null)(NextPane);

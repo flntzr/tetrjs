@@ -34,9 +34,6 @@ class App extends React.Component {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ],
-            // nextShapeNum: 0,
-            // hasGameStarted: false,
-            // isGamePaused: false
         };
     }
 
@@ -45,9 +42,9 @@ class App extends React.Component {
             <div id="tetrjs-container">
                 <MainPane grid={this.state.grid}/>
                 <div id="info-group">
-                    <ScorePane score={this.state.score}/>
-                    <NextPane nextShape={this.state.nextShapeNum}/>
-                    <LevelPane level={this.state.level}/>
+                    <ScorePane/>
+                    <NextPane/>
+                    <LevelPane/>
                     <KeyPressListeners onArrowCommandPressFun={this.onArrowCommandPress.bind(this)} onSpecialCommandPressFun={this.onSpecialCommandPress.bind(this)}/>
                 </div>
                 <StartGamePane/>

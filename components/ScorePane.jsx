@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-export default class ScorePane extends React.Component {
+class ScorePane extends React.Component {
     render() {
         return (
             <div id="score-pane" className="pane">
@@ -15,3 +16,11 @@ export default class ScorePane extends React.Component {
 ScorePane.propTypes = {
     score: PropTypes.number.isRequired
 }
+
+const mapStateToProps = (state) => {
+    return {
+        score: state.score
+    }
+}
+
+export default connect(mapStateToProps, null)(ScorePane);
