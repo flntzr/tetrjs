@@ -5,7 +5,6 @@ import ScorePane from './components/ScorePane.jsx';
 import NextPane from './components/NextPane.jsx';
 import StartGamePane from './components/StartGamePane.jsx';
 import KeyPressListeners from './components/CommandPressHandler.jsx';
-import {ARROW_COMMANDS, SPECIAL_COMMANDS, PLAYING_FIELD_BOUNDS} from './components/Constants.jsx';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {exampleAction} from './actions/actions.js';
@@ -24,7 +23,7 @@ class App extends React.Component {
                     <ScorePane/>
                     <NextPane/>
                     <LevelPane/>
-                    <KeyPressListeners onArrowCommandPressFun={this.onArrowCommandPress.bind(this)} onSpecialCommandPressFun={this.onSpecialCommandPress.bind(this)}/>
+                    <KeyPressListeners/>
                 </div>
                 <StartGamePane/>
             </div>
@@ -46,35 +45,35 @@ class App extends React.Component {
         });
     }
 
-    onArrowCommandPress(command) {
-        let xModifier = 0;
-        let yModifier = 0;
-        switch(command) {
-            case ARROW_COMMANDS.ArrowUp:
-                this.turnActiveBlock();
-                return;
-            case ARROW_COMMANDS.ArrowRight:
-                xModifier = 1;
-                this.repositionActiveBlock(xModifier, yModifier);
-                return;
-            case ARROW_COMMANDS.ArrowDown:
-                yModifier = 1;
-                this.repositionActiveBlock(xModifier, yModifier);
-                return;
-            case ARROW_COMMANDS.ArrowLeft:
-                xModifier = -1;
-                this.repositionActiveBlock(xModifier, yModifier);
-                return;
-        }
-    }
+    // onArrowCommandPress(command) {
+    //     let xModifier = 0;
+    //     let yModifier = 0;
+    //     switch(command) {
+    //         case ARROW_COMMANDS.ArrowUp:
+    //             this.turnActiveBlock();
+    //             return;
+    //         case ARROW_COMMANDS.ArrowRight:
+    //             xModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowDown:
+    //             yModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowLeft:
+    //             xModifier = -1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //     }
+    // }
 
-    onSpecialCommandPress(command) {
-        if (command === SPECIAL_COMMANDS.Space) {
-            this.repositionActiveBlock(0, 1000);
-        } else if (command === SPECIAL_COMMANDS.Escape) {
-            // TODO: pause/unpause game
-        }
-    }
+    // onSpecialCommandPress(command) {
+    //     if (command === SPECIAL_COMMANDS.Space) {
+    //         this.repositionActiveBlock(0, 1000);
+    //     } else if (command === SPECIAL_COMMANDS.Escape) {
+    //         // TODO: pause/unpause game
+    //     }
+    // }
 
     // repositionActiveBlock(xModifier, yModifier) {
     //     this.props.exampleAction();

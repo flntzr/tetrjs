@@ -1,48 +1,49 @@
 import {ActionCodes} from '../reducers/constants.js'
 
-export const downAction = () => {
+export const downAction = () => (
     {
         type: ActionCodes.DOWN
     }
-}
+)
 
-export const rotateAction = () => {
+export const rotateAction = () => (
     {
         type: ActionCodes.ROTATE
         // TODO: target rotation
     }
-}
+)
 
-export const leftAction = () => {
+export const leftAction = () => (
     {
         type: ActionCodes.LEFT
     }
-}
+)
 
-export const rightAction = () => {
+export const rightAction = () => (
     {
         type: ActionCodes.RIGHT
     }
-}
-export const dropAction = () => {
+)
+
+export const dropAction = () => (
     {
         type: ActionCodes.DROP
     }
-}
+)
 
-export const spawnAction = () => {
+export const spawnAction = () => (
     {
         type: ActionCodes.SPAWN
         // TODO: shape
     }
-}
+)
 
-export const popAction = () => {
+export const popAction = () => (
     {
         type: ActionCodes.POP
         // TODO: row indices
     }
-}
+)
 
 export const gameStartAction = () => (
     {
@@ -50,11 +51,11 @@ export const gameStartAction = () => (
     }
 )
 
-export const gameOverAction = () => {
+export const gameOverAction = () => (
     {
         type: ActionCodes.GAME_OVER
     }
-}
+)
 
 export const pauseAction = () => (
     {

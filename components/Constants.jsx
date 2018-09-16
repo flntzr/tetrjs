@@ -201,14 +201,11 @@ export var BLOCK_TYPES = Object.freeze([
     "block-g"
 ]);
 
-export var ARROW_COMMANDS = Object.freeze({
+export var USER_COMMANDS = Object.freeze({
     ArrowUp: 0,
     ArrowRight: 1,
     ArrowDown: 2,
-    ArrowLeft: 3
-});
-
-export var SPECIAL_COMMANDS = Object.freeze({
+    ArrowLeft: 3,
     Space: 4,
     Escape: 5
 });

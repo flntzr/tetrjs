@@ -1,8 +1,11 @@
 import React from 'react';
-import {ARROW_COMMANDS, SPECIAL_COMMANDS} from './Constants.jsx';
+import {USER_COMMANDS} from './Constants.jsx';
+import {ActionCodes} from '../reducers/constants.js'
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {downAction, rightAction, rotateAction, leftAction, dropAction, pauseAction} from '../actions/actions.js';
 
-
-export default class KeyPressListeners extends React.Component {
+class KeyPressListeners extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,19 +25,45 @@ export default class KeyPressListeners extends React.Component {
         document.removeEventListener("keydown", this.state.keyDownFunction);
     }
 
+// DOWN: 0,
+// ROTATE: 1,
+// LEFT: 2,
+// RIGHT: 3,
+// DROP: 4,
+// SPAWN: 5,
+// POP: 6,
+// GAME_START: 7,
+// GAME_OVER: 8,
+// PAUSE: 9
     onKeyDown(e) {
-        if (ARROW_COMMANDS[e.code] !== undefined) {
-            this.onArrowCommandPress(ARROW_COMMANDS[e.code]);
-        } else if (SPECIAL_COMMANDS[e.code] !== undefined) {
-            this.onSpecialCommandPress(SPECIAL_COMMANDS[e.code]);
+        const command = USER_COMMANDS[e.code];
+        if (command !== undefined) {
+            switch (command) {
+                case ActionCodes.DOWN:
+                    this.props.downAction();
+                    return;
+                case ActionCodes.ROTATE:
+                    this.props.rotateAction();
+                    return;
+                case ActionCodes.LEFT:
+                    this.props.leftAction();
+                    return;
+                case ActionCodes.RIGHT:
+                    this.props.rightAction();
+                    return;
+                case ActionCodes.DROP:
+                    this.props.dropAction();
+                    return;
+                case ActionCodes.PAUSE:
+                    this.props.pauseAction();
+                    return;
+            }
         }
     };
-
-    onArrowCommandPress(command) {
-        this.props.onArrowCommandPressFun(command);
-    }
-
-    onSpecialCommandPress(command) {
-        this.props.onSpecialCommandPressFun(command);
-    }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({downAction, rightAction, leftAction, dropAction, pauseAction, rotateAction}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(KeyPressListeners);
