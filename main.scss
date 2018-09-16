@@ -18,37 +18,35 @@
         box-sizing: border-box;
         $active-border-color: black;
 
+        @mixin active-block($color) {
+            box-shadow: inset 3px 3px #555555;
+            background-color: $color;
+        }
+
         &.block {
             &-blank {
                 background-color: lightgray;
             }
             &-a {
-                border-color: $active-border-color;
-                background-color: red;
+                @include active-block(red);
             }
             &-b {
-                border-color: $active-border-color;
-                background-color: orange;
+                @include active-block(orange);
             }
             &-c {
-                border-color: $active-border-color;
-                background-color: orangered;
+                @include active-block(orangered);
             }
             &-d {
-                border-color: $active-border-color;
-                background-color: gold;
+                @include active-block(gold);
             }
             &-e {
-                border-color: $active-border-color;
-                background-color: forestgreen;
+                @include active-block(forestgreen);
             }
             &-f {
-                border-color: $active-border-color;
-                background-color: purple;
+                @include active-block(purple);
             }
             &-g {
-                border-color: $active-border-color;
-                background-color: lightblue;
+                @include active-block(lightblue);
             }
         }
     }
