@@ -1,4 +1,4 @@
-import {ActionCodes} from '../reducers/constants.js'
+import {ActionCodes} from './Constants.jsx'
 
 export const downAction = () => (
     {
@@ -9,7 +9,6 @@ export const downAction = () => (
 export const rotateAction = () => (
     {
         type: ActionCodes.ROTATE
-        // TODO: target rotation
     }
 )
 
@@ -31,17 +30,17 @@ export const dropAction = () => (
     }
 )
 
-export const spawnAction = () => (
+export const spawnAction = (shapeNum) => (
     {
-        type: ActionCodes.SPAWN
-        // TODO: shape
+        type: ActionCodes.SPAWN,
+        shapeNum: shapeNum
     }
 )
 
-export const popAction = () => (
+export const popAction = (rowIndices) => (
     {
-        type: ActionCodes.POP
-        // TODO: row indices
+        type: ActionCodes.POP,
+        rowIndices: rowIndices
     }
 )
 

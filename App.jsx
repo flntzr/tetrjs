@@ -7,7 +7,7 @@ import StartGamePane from './components/StartGamePane.jsx';
 import KeyPressListeners from './components/CommandPressHandler.jsx';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {exampleAction} from './actions/actions.js';
+import {exampleAction} from './actions/Actions.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -29,7 +29,63 @@ class App extends React.Component {
             </div>
         );
     }
+    // onArrowCommandPress(command) {
+    //     let xModifier = 0;
+    //     let yModifier = 0;
+    //     switch(command) {
+    //         case ARROW_COMMANDS.ArrowUp:
+    //             this.turnActiveBlock();
+    //             return;
+    //         case ARROW_COMMANDS.ArrowRight:
+    //             xModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowDown:
+    //             yModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowLeft:
+    //             xModifier = -1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //     }
+    // }
 
+    // onSpecialCommandPress(command) {
+    //     if (command === SPECIAL_COMMANDS.Space) {
+    //         this.repositionActiveBlock(0, 1000);
+    //     } else if (command === SPECIAL_COMMANDS.Escape) {
+    //         // TODO: pause/unpause game
+    //     }
+    // }    // onArrowCommandPress(command) {
+    //     let xModifier = 0;
+    //     let yModifier = 0;
+    //     switch(command) {
+    //         case ARROW_COMMANDS.ArrowUp:
+    //             this.turnActiveBlock();
+    //             return;
+    //         case ARROW_COMMANDS.ArrowRight:
+    //             xModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowDown:
+    //             yModifier = 1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //         case ARROW_COMMANDS.ArrowLeft:
+    //             xModifier = -1;
+    //             this.repositionActiveBlock(xModifier, yModifier);
+    //             return;
+    //     }
+    // }
+
+    // onSpecialCommandPress(command) {
+    //     if (command === SPECIAL_COMMANDS.Space) {
+    //         this.repositionActiveBlock(0, 1000);
+    //     } else if (command === SPECIAL_COMMANDS.Escape) {
+    //         // TODO: pause/unpause game
+    //     }
+    // }
     incLevel() {
         this.setState((prevState, props) => {
             prevState.level++;

@@ -1,6 +1,6 @@
 import React from 'react';
-import {createStore, combineReducers} from 'redux';
-import reducers from '../reducers/reducers.js';
+import {createStore} from 'redux';
+import reducers from '../reducers/Reducers.jsx';
 
 export const store = createStore(
     reducers,

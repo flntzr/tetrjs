@@ -1,7 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {gameStartAction} from '../actions/actions.js';
+import {gameStartAction} from '../actions/Actions.jsx';
 
 class StartGamePane extends React.Component {
     constructor(props) {

@@ -1,4 +1,4 @@
-import {ActionCodes} from './constants.js'
+import {ActionCodes} from '../actions/Constants.jsx'
 
 const initialState = {
     grid: [

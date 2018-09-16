@@ -1,9 +1,9 @@
 import React from 'react';
 import {USER_COMMANDS} from './Constants.jsx';
-import {ActionCodes} from '../reducers/constants.js'
+import {ActionCodes} from '../actions/Constants.jsx'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {downAction, rightAction, rotateAction, leftAction, dropAction, pauseAction} from '../actions/actions.js';
+import {downAction, rightAction, rotateAction, leftAction, dropAction, pauseAction} from '../actions/Actions.jsx';
 
 class KeyPressListeners extends React.Component {
     constructor(props) {
