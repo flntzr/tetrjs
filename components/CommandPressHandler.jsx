@@ -39,22 +39,22 @@ class KeyPressListeners extends React.Component {
         const command = USER_COMMANDS[e.code];
         if (command !== undefined) {
             switch (command) {
-                case ActionCodes.DOWN:
+                case USER_COMMANDS.ArrowDown:
                     this.props.downAction();
                     return;
-                case ActionCodes.ROTATE:
+                case USER_COMMANDS.ArrowUp:
                     this.props.rotateAction();
                     return;
-                case ActionCodes.LEFT:
+                case USER_COMMANDS.ArrowLeft:
                     this.props.leftAction();
                     return;
-                case ActionCodes.RIGHT:
+                case USER_COMMANDS.ArrowRight:
                     this.props.rightAction();
                     return;
-                case ActionCodes.DROP:
+                case USER_COMMANDS.Space:
                     this.props.dropAction();
                     return;
-                case ActionCodes.PAUSE:
+                case USER_COMMANDS.Escape:
                     this.props.pauseAction();
                     return;
             }
