@@ -173,9 +173,23 @@ const rightReducer = (state) => {
 }
 
 const dropReducer = (state) => {
-    return {
-        ...state,
+    let validState = state;
+    let isValid = true;
+    let posY = state.activeShape.posY;
+    while (isValid) {
+        const newState = {
+            ...state,
+            activeShape: {
+                ...state.activeShape,
+                posY: ++posY
+            }
+        }
+        isValid = isActiveShapeValid(newState);
+        if (isValid) {
+            validState = newState;
+        }
     }
+    return validState;
 }
 
 const spawnReducer = (state) => {
