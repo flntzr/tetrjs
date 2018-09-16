@@ -30,9 +30,7 @@ class MainPane extends React.Component {
 
         for (let y = minY; y <= maxY; y++) {
             for (let x = minX; x <= maxX; x++) {
-                const shapeX = x - minX;
-                const shapeY = y - minY;
-                grid[y * GRID_WIDTH + x] = shapeGrid[shapeY * SHAPE_SIZE + shapeX] || grid[y * GRID_WIDTH + x];
+                grid[y * GRID_WIDTH + x] = shapeGrid[(y - minY) * SHAPE_SIZE + (x - minX)] || grid[y * GRID_WIDTH + x];
             }
         }
         return grid;

@@ -213,10 +213,3 @@ export var USER_COMMANDS = Object.freeze({
 export const SHAPE_SIZE = 4;
 export const GRID_WIDTH = 10;
 export const GRID_HEIGHT = 16;
-
-export var PLAYING_FIELD_BOUNDS = Object.freeze({
-    LEFT: 0,
-    RIGHT: 9,
-    TOP: 0,
-    BOTTOM: 15
-});
