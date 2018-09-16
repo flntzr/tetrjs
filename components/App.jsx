@@ -1,10 +1,10 @@
 import React from 'react';
-import MainPane from './components/MainPane.jsx';
-import LevelPane from './components/LevelPane.jsx'
-import ScorePane from './components/ScorePane.jsx';
-import NextPane from './components/NextPane.jsx';
-import StartGamePane from './components/StartGamePane.jsx';
-import KeyPressListeners from './components/CommandPressHandler.jsx';
+import MainPane from './MainPane.jsx';
+import LevelPane from './LevelPane.jsx'
+import ScorePane from './ScorePane.jsx';
+import NextPane from './NextPane.jsx';
+import StartGamePane from './StartGamePane.jsx';
+import KeyPressListeners from './CommandPressHandler.jsx';
 
 export default class App extends React.Component {
     constructor(props) {
