@@ -56,7 +56,7 @@ export const gameOverAction = () => (
     }
 )
 
-export const pauseAction = () => (
+export const gamePauseAction = () => (
     {
         type: ActionCodes.PAUSE
     }

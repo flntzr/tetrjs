@@ -1,7 +1,7 @@
 import React from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {gameStartAction} from '../actions/Actions.jsx';
+import {gameStartAction, gamePauseAction} from '../actions/Actions.jsx';
 
 class SettingsPane extends React.Component {
     constructor(props) {
@@ -10,12 +10,23 @@ class SettingsPane extends React.Component {
     }
     
     render() {
-        if (this.props.hasGameStarted) {
-            return null;
-        }
+        const startButton = 
+            <button onClick={this.startGame.bind(this)} disabled={this.props.hasGameStarted}>
+                <i className="fas fa-play"></i>
+                Start Game
+            </button>;
+
+        const pauseIcon = this.props.isGamePaused ? "far fa-pause-circle" : "fas fa-pause-circle";
+        const pauseButton = 
+            <button onClick={this.pauseGame.bind(this)} disabled={!this.props.hasGameStarted}>
+                <i className={pauseIcon}></i>
+                Pause Game
+            </button>;
+
         return (
             <div id="settings-pane" className="pane">
-                <button onClick={this.startGame.bind(this)}>Start Game</button>
+                {startButton}
+                {pauseButton}
             </div>
         );
     }
@@ -23,17 +34,22 @@ class SettingsPane extends React.Component {
     startGame() {
         this.props.gameStartAction();
     }
+
+    pauseGame() {
+        this.props.gamePauseAction();
+    }
 }
 
 const mapStateToProps = (state) => {
     return {
         hasGameStarted: state.hasGameStarted,
-        isGamePaused: state.isGamePaused
+        isGamePaused: state.isGamePaused,
+        isGameOver: state.isGameOver
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({gameStartAction}, dispatch);
+    return bindActionCreators({gameStartAction, gamePauseAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsPane);

@@ -2,7 +2,7 @@ import React from 'react';
 import {USER_COMMANDS} from './Constants.jsx';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {downAction, rightAction, rotateAction, leftAction, dropAction, pauseAction} from '../actions/Actions.jsx';
+import {downAction, rightAction, rotateAction, leftAction, dropAction, gamePauseAction} from '../actions/Actions.jsx';
 
 class KeyPressListeners extends React.Component {
     constructor(props) {
@@ -54,7 +54,7 @@ class KeyPressListeners extends React.Component {
                     this.props.dropAction();
                     return;
                 case USER_COMMANDS.Escape:
-                    this.props.pauseAction();
+                    this.props.gamePauseAction();
                     return;
             }
         }
@@ -62,7 +62,7 @@ class KeyPressListeners extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({downAction, rightAction, leftAction, dropAction, pauseAction, rotateAction}, dispatch);
+    return bindActionCreators({downAction, rightAction, leftAction, dropAction, gamePauseAction, rotateAction}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(KeyPressListeners);
