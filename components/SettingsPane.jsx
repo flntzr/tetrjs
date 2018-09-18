@@ -12,13 +12,13 @@ class SettingsPane extends React.Component {
     render() {
         const startButton = 
             <button onClick={this.startGame.bind(this)} disabled={this.props.hasGameStarted}>
-                <i className="fas fa-play"></i> Start Game
+                <i className="fas fa-play"></i>
             </button>;
 
         const pauseIcon = this.props.isGamePaused ? "far fa-pause-circle" : "fas fa-pause-circle";
         const pauseButton = 
             <button onClick={this.pauseGame.bind(this)} disabled={!this.props.hasGameStarted}>
-                <i className={pauseIcon}></i> Pause Game
+                <i className={pauseIcon}></i>
             </button>;
 
         return (
