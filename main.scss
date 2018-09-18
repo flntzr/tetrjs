@@ -9,6 +9,16 @@
     flex-direction: row;
     justify-content: center;
 
+    button {
+        background-color: lightsteelblue;
+        border: none;
+        padding: .5em;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
 
     .pane {
         text-align: center;
@@ -75,7 +85,12 @@
             width: calc(100% / 4);
             height: calc(100% / 4);
         }
+    }
 
+    #settings-pane {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: .5em;
     }
 
     #info-group {
