@@ -93,6 +93,10 @@ const downReducer = (state) => {
 }
 
 const rotateReducer = (state) => {
+    if (state.activeShape.down) {
+        return shape;
+    }
+
     const newState = {
         ...state,
         activeShape: {
@@ -105,6 +109,10 @@ const rotateReducer = (state) => {
 }
 
 const leftReducer = (state) => {
+    if (state.activeShape.down) {
+        return shape;
+    }
+
     const newState = {
         ...state,
         activeShape: {
@@ -117,6 +125,9 @@ const leftReducer = (state) => {
 }
 
 const rightReducer = (state) => {
+    if (state.activeShape.down) {
+        return shape;
+    }
     const newState = {
         ...state,
         activeShape: {
