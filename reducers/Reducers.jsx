@@ -90,10 +90,16 @@ const downReducer = (state) => {
     }
     const newState = goDown(state);
     const isValid = isActiveShapeValid(newState);
-    const validState = isValid ? newState : state;
+    let validState = isValid ? newState : state;
     // check if the shape is 'down', i.e. cannot go any further down
-    const isDown = !isActiveShapeValid(validState);
-    validState.activeShape.down = isDown;
+    const isDown = !isValid;
+    validState = {
+        ...validState,
+        activeShape: {
+            ...validState.activeShape,
+            down: isDown
+        }
+    }
     return validState;
 }
 
@@ -213,7 +219,11 @@ const lockReducer = (state) => {
     return {
         ...state,
         score: state.score + scoreAddition,
-        grid: newGrid
+        grid: newGrid,
+        activeShape: {
+            ...state.activeShape,
+            down: true
+        }
     }
 }
 
