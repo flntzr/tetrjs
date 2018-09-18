@@ -30,8 +30,10 @@ const initialState = {
     nextShapeNum: 0,
     score: 0,
     level: 0,
+    subLevel: 0,
     hasGameStarted: false,
     isGamePaused: false,
+    gameOver: false
 }
 
 // DOWN: 0,
@@ -161,12 +163,17 @@ const dropReducer = (state) => {
 }
 
 const spawnReducer = (state) => {
-    // TODO: spawn + check if spawn collides with grid so gameover is triggered
-    // random number between 0 and 7
-    const randomShapeNum = Math.floor((Math.random() * 7));
-    return {
+    let subLevel = state.subLevel + 1;
+    let level = state.level;
+    if (subLevel === 15) {
+        subLevel = 0;
+        level++;
+    }
+    const newState = {
         ...state,
-        nextShapeNum: randomShapeNum,
+        nextShapeNum: Math.floor((Math.random() * 7)),
+        level: level,
+        subLevel: subLevel,
         activeShape: {
             num: state.nextShapeNum,
             posX: 3,
@@ -174,6 +181,15 @@ const spawnReducer = (state) => {
             rotation: 0,
             down: false
         }
+    }
+    const isValid = isActiveShapeValid(newState);
+    if (isValid) {
+        return newState;
+    } else {
+        // Game over
+        state.hasGameStarted = false;
+        state.gameOver = true;
+        return state;
     }
 }
 
