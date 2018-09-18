@@ -43,8 +43,7 @@ class GameTick extends React.Component {
     }
 
     tick() {
-        // console.log("TICK!");
-        // TODO: trigger drop, spawn and pop actions
+        console.log("TICK");
         if (this.props.isActiveShapeDown) {
             this.props.lockAction();
             this.props.spawnAction();

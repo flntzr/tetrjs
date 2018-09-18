@@ -3,7 +3,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {gameStartAction} from '../actions/Actions.jsx';
 
-class StartGamePane extends React.Component {
+class SettingsPane extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -14,8 +14,7 @@ class StartGamePane extends React.Component {
             return null;
         }
         return (
-            <div id="start-game-pane" className="pane">
-                START-GAME-PANE<br/>
+            <div id="settings-pane" className="pane">
                 <button onClick={this.startGame.bind(this)}>Start Game</button>
             </div>
         );
@@ -37,4 +36,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({gameStartAction}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartGamePane);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPane);

@@ -2,6 +2,9 @@ import React from 'react';
 import GridBlock from './Block.jsx';
 import {connect} from 'react-redux';
 import {SHAPES, EMPTY_SHAPE, GRID_WIDTH, GRID_HEIGHT, SHAPE_SIZE} from './Constants.jsx';
+import SettingsPane from './SettingsPane.jsx';
+import KeyPressListeners from './CommandPressHandler.jsx';
+import GameTick from './GameTick.jsx'
 
 class MainPane extends React.Component {
     render() {
@@ -11,8 +14,13 @@ class MainPane extends React.Component {
             blocks.push(<GridBlock key={i} typeNum={grid[i]}/>);
         }
         return (
-            <div id="main-pane" className="pane">
-                {blocks}
+            <div>
+                <SettingsPane/>
+                <KeyPressListeners/>
+                <GameTick/>
+                <div id="main-pane" className="pane">
+                    {blocks}
+                </div>
             </div>
         );
     }
