@@ -229,7 +229,7 @@ const lockReducer = (state) => {
 
 const gameStartReducer = (state) => {
     return {
-        ...state,
+        ...initialState,
         nextShapeNum: Math.floor((Math.random() * 7)),
         hasGameStarted: true,
         isGamePaused: false,
