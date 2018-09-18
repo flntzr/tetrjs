@@ -63,9 +63,14 @@
         }
     }
 
-    #main-pane {
+    @mixin main-block-size {
         width: 20em;
         height: 32em;
+        box-sizing: border-box;
+    }
+
+    #main-pane {
+        @include main-block-size();
         display: flex;
         flex-wrap: wrap;
 
@@ -73,6 +78,12 @@
             width: calc(100% / 10);
             height: calc(100% / 16);
         }
+    }
+
+    #instructions-pane {
+        @include main-block-size();
+        background-color: #EEEEEE;
+        padding: 1em;
     }
 
     #next-pane #next-block-preview {
