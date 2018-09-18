@@ -94,7 +94,7 @@ const downReducer = (state) => {
 
 const rotateReducer = (state) => {
     if (state.activeShape.down) {
-        return shape;
+        return state;
     }
 
     const newState = {
@@ -110,7 +110,7 @@ const rotateReducer = (state) => {
 
 const leftReducer = (state) => {
     if (state.activeShape.down) {
-        return shape;
+        return state;
     }
 
     const newState = {
@@ -126,7 +126,7 @@ const leftReducer = (state) => {
 
 const rightReducer = (state) => {
     if (state.activeShape.down) {
-        return shape;
+        return state;
     }
     const newState = {
         ...state,
@@ -183,7 +183,6 @@ const lockReducer = (state) => {
     // take care of popping rows if necessary
     const rowsToPop = getRowsToPop(newGrid);
     if (rowsToPop.length > 0) {
-        console.log(rowsToPop); // TODO: remove debug
         newGrid = popRows(newGrid, rowsToPop);
     }
     const scoreAddition = getPopScore(rowsToPop.length);
