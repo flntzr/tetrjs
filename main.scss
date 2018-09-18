@@ -86,6 +86,12 @@
         padding: 1em;
     }
 
+    #game-over-pane {
+        @include main-block-size();
+        background-color: #EEEEEE;
+        padding: 1em;
+    }
+
     #next-pane #next-block-preview {
         width: 4em;
         height: 4em;

@@ -7,7 +7,7 @@ class LevelPane extends React.Component {
         return (
             <div id="level-pane" className="pane">
                 <b>LEVEL</b><br/>
-                { this.props.level }
+                { this.props.level + 1 }
             </div>
         );
     }
