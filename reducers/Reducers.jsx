@@ -252,6 +252,9 @@ const gameOverReducer = (state) => {
 }
 
 const pauseReducer = (state) => {
+    if (!state.hasGameStarted) {
+        return state;
+    }
     return {
         ...state,
         isGamePaused: !state.isGamePaused
