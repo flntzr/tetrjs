@@ -85,17 +85,20 @@ const goDown = (state) => {
 } 
 
 const downReducer = (state) => {
+    if (!state.hasGameStarted || state.isGamePaused) {
+        return state;
+    }
     const newState = goDown(state);
     const isValid = isActiveShapeValid(newState);
     const validState = isValid ? newState : state;
     // check if the shape is 'down', i.e. cannot go any further down
-    const isDown = !isActiveShapeValid(goDown(validState));
+    const isDown = !isActiveShapeValid(validState);
     validState.activeShape.down = isDown;
     return validState;
 }
 
 const rotateReducer = (state) => {
-    if (state.activeShape.down) {
+    if (!state.hasGameStarted || state.isGamePaused || state.activeShape.down) {
         return state;
     }
 
@@ -111,7 +114,7 @@ const rotateReducer = (state) => {
 }
 
 const leftReducer = (state) => {
-    if (state.activeShape.down) {
+    if (!state.hasGameStarted || state.isGamePaused || state.activeShape.down) {
         return state;
     }
 
@@ -127,7 +130,7 @@ const leftReducer = (state) => {
 }
 
 const rightReducer = (state) => {
-    if (state.activeShape.down) {
+    if (!state.hasGameStarted || state.isGamePaused || state.activeShape.down) {
         return state;
     }
     const newState = {
@@ -142,6 +145,10 @@ const rightReducer = (state) => {
 }
 
 const dropReducer = (state) => {
+    if (!state.hasGameStarted || state.isGamePaused) {
+        return state;
+    }
+
     let validState = state;
     let isValid = true;
     let posY = state.activeShape.posY;
