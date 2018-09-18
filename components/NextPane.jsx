@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 class NextPane extends React.Component {
     render() {
-        const grid = this.props.nextShapeNum != null ? SHAPES[this.props.nextShapeNum][0]: EMPTY_SHAPE;
+        const grid = this.props.nextShapeNum != -1 ? SHAPES[this.props.nextShapeNum][0]: EMPTY_SHAPE;
         const blocks = [];
         let i = 0;
         for (const typeNum of grid) {

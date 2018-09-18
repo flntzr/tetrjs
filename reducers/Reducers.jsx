@@ -21,13 +21,13 @@ const initialState = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ],
     activeShape: {
-        num: 4,
+        num: -1,
         posX: 3,
         posY: 0,
         rotation: 0,
         down: false
     },
-    nextShapeNum: 0,
+    nextShapeNum: -1,
     score: 0,
     level: 0,
     subLevel: 0,
@@ -230,8 +230,16 @@ const lockReducer = (state) => {
 const gameStartReducer = (state) => {
     return {
         ...state,
+        nextShapeNum: Math.floor((Math.random() * 7)),
         hasGameStarted: true,
-        isGamePaused: false
+        isGamePaused: false,
+        activeShape: {
+            num: Math.floor((Math.random() * 7)),
+            posX: 3,
+            posY: 0,
+            rotation: 0,
+            down: false
+        }
     }
 }
 
