@@ -74,7 +74,6 @@ export const lockActiveShape = (state) => {
             grid[y * GRID_WIDTH + x] = shapeGrid[(y - minY) * SHAPE_SIZE + (x - minX)] || grid[y * GRID_WIDTH + x];
         }
     }
-    console.log("LOCK!!");
     return grid;
 }
 

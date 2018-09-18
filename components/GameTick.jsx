@@ -28,7 +28,6 @@ class GameTick extends React.Component {
         window.clearInterval(this.state.intervalID);
 
         if (this.props.hasGameStarted && !this.props.isGamePaused) {
-            console.log("START TICKING");
             const interval = getInterval(this.props.level);
             const intervalID = window.setInterval(this.tick.bind(this), interval);
             this.setState((prevState) => {
@@ -37,13 +36,10 @@ class GameTick extends React.Component {
                 };
             });
             return;
-        } else {
-            console.log("STOP TICKING");
         }
     }
 
     tick() {
-        console.log("TICK");
         if (this.props.isActiveShapeDown) {
             this.props.lockAction();
             this.props.spawnAction();
@@ -54,7 +50,7 @@ class GameTick extends React.Component {
 }
 
 const getInterval = (level) => {
-    const startingTime = 1000;
+    const startingTime = 800;
     const minInterval = 100; // minimum interval
     return Math.max(startingTime / (level + 1), minInterval);
 }
