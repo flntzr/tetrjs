@@ -5,13 +5,9 @@ import ScorePane from './ScorePane.jsx';
 import NextPane from './NextPane.jsx';
 import StartGamePane from './StartGamePane.jsx';
 import KeyPressListeners from './CommandPressHandler.jsx';
+import GameTick from './GameTick.jsx'
 
 export default class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
     render() {
         return (
             <div id="tetrjs-container">
@@ -21,6 +17,7 @@ export default class App extends React.Component {
                     <NextPane/>
                     <LevelPane/>
                     <KeyPressListeners/>
+                    <GameTick/>
                 </div>
                 <StartGamePane/>
             </div>

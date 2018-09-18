@@ -24,7 +24,8 @@ const initialState = {
         num: 4,
         posX: 3,
         posY: 0,
-        rotation: 0
+        rotation: 0,
+        down: false
     },
     nextShapeNum: 0,
     score: 0,
