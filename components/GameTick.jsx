@@ -52,7 +52,7 @@ class GameTick extends React.Component {
 const getInterval = (level) => {
     const startingTime = 800;
     const minInterval = 100; // minimum interval
-    return Math.max(startingTime / (level + 1), minInterval);
+    return Math.max(startingTime - 80 * level, minInterval);
 }
 
 const mapStateToProps = (state) => {
