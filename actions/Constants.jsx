@@ -5,7 +5,7 @@ export var ActionCodes = Object.freeze({
     RIGHT: 3,
     DROP: 4,
     SPAWN: 5,
-    POP: 6,
+    LOCK: 6,
     GAME_START: 7,
     GAME_OVER: 8,
     PAUSE: 9

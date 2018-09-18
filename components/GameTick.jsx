@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {downAction, lockAction, spawnAction} from '../actions/Actions.jsx';
 
 class GameTick extends React.Component {
 
@@ -28,7 +30,7 @@ class GameTick extends React.Component {
         if (this.props.hasGameStarted && !this.props.isGamePaused) {
             console.log("START TICKING");
             const interval = getInterval(this.props.level);
-            const intervalID = window.setInterval(this.tick, interval);
+            const intervalID = window.setInterval(this.tick.bind(this), interval);
             this.setState((prevState) => {
                 return {
                     intervalID: intervalID
@@ -41,8 +43,14 @@ class GameTick extends React.Component {
     }
 
     tick() {
+        // console.log("TICK!");
         // TODO: trigger drop, spawn and pop actions
-        console.log("TICK!");
+        if (this.props.isActiveShapeDown) {
+            this.props.lockAction();
+            this.props.spawnAction();
+        } else {
+            this.props.downAction();
+        }
     }
 }
 
@@ -56,12 +64,13 @@ const mapStateToProps = (state) => {
     return {
         hasGameStarted: state.hasGameStarted,
         isGamePaused: state.isGamePaused,
-        level: state.level
+        level: state.level,
+        isActiveShapeDown: state.activeShape.down
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({downAction}, dispatch);
+    return bindActionCreators({downAction, lockAction, spawnAction}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(GameTick);

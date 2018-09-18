@@ -37,9 +37,9 @@ export const spawnAction = (shapeNum) => (
     }
 )
 
-export const popAction = (rowIndices) => (
+export const lockAction = (rowIndices) => (
     {
-        type: ActionCodes.POP,
+        type: ActionCodes.LOCK,
         rowIndices: rowIndices
     }
 )

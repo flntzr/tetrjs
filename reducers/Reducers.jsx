@@ -1,5 +1,5 @@
 import {ActionCodes} from '../actions/Constants.jsx';
-import {SHAPES, GRID_WIDTH, GRID_HEIGHT, SHAPE_SIZE} from '../components/Constants.jsx';
+import {isActiveShapeValid, lockActiveShape, getRowsToPop, popRows, getPopScore} from './ReducerUtil.jsx';
 
 const initialState = {
     grid: [
@@ -40,7 +40,7 @@ const initialState = {
 // RIGHT: 3,
 // DROP: 4,
 // SPAWN: 5,
-// POP: 6,
+// LOCK: 6,
 // GAME_START: 7,
 // GAME_OVER: 8,
 // PAUSE: 9
@@ -59,8 +59,8 @@ const reducers = (state = initialState, action) => {
             return dropReducer(state);
         case ActionCodes.SPAWN:
             return spawnReducer(state);
-        case ActionCodes.POP:
-            return popReducer(state);
+        case ActionCodes.LOCK:
+            return lockReducer(state);
         case ActionCodes.GAME_START:
             return gameStartReducer(state);
         case ActionCodes.GAME_OVER:
@@ -72,69 +72,24 @@ const reducers = (state = initialState, action) => {
     }
 }
 
-const isActiveShapeValid = (state) => {
-    const grid = Object.assign([], state.grid);
-    if (state.activeShape.num == -1) {
-        return true;
-    }
-    const shapeGrid = SHAPES[state.activeShape.num][state.activeShape.rotation];
-    const minX = state.activeShape.posX;
-    const minY = state.activeShape.posY;
-    const maxX = Math.min(state.activeShape.posX + SHAPE_SIZE, GRID_WIDTH) - 1;
-    const maxY = Math.min(state.activeShape.posY + SHAPE_SIZE, GRID_HEIGHT) - 1;
-
-    // check if existing grid blocks collide with active shape
-    let isInvalid = false;
-    for (let y = minY; y <= maxY; y++) {
-        for (let x = minX; x <= maxX; x++) {
-            isInvalid = isInvalid || (shapeGrid[(y - minY) * SHAPE_SIZE + (x - minX)] && grid[y * GRID_WIDTH + x]);
-        }
-    }
-    
-    // check if active shape overflows
-    const isPixelValid = (x, y) => {
-        const shapeX = x - minX;
-        const shapeY = y - minY;
-        return !shapeGrid[shapeY * SHAPE_SIZE + shapeX];
-    }
-
-    // overflows top
-    for (let y = minY; y < 0; y++) {
-        for (let x = 0; x < SHAPE_SIZE; x++) {
-            isInvalid = isInvalid || !isPixelValid(x + minX, y);
-        }
-    }
-    // overflows left
-    for (let x = minX; x < 0; x++) {
-        for (let y = 0; y < SHAPE_SIZE; y++) {
-            isInvalid = isInvalid || !isPixelValid(x, y + minY);
-        }
-    }
-    // overflows right
-    for (let x = state.activeShape.posX + SHAPE_SIZE - 1; x >= GRID_WIDTH; x--) {
-        for (let y = 0; y < SHAPE_SIZE; y++) {
-            isInvalid = isInvalid || !isPixelValid(x, y + minY);
-        }
-    }
-    // overflows bottom
-    for (let y = state.activeShape.posY + SHAPE_SIZE - 1; y >= GRID_HEIGHT; y--) {
-        for (let x = 0; x < SHAPE_SIZE; x++) {
-            isInvalid = isInvalid || !isPixelValid(x + minX, y);
-        }
-    }
-    return !isInvalid;
-}
-
-const downReducer = (state) => {
-    const newState = {
+const goDown = (state) => {
+    return {
         ...state,
         activeShape: {
             ...state.activeShape,
             posY: state.activeShape.posY + 1
         }
     }
+} 
+
+const downReducer = (state) => {
+    const newState = goDown(state);
     const isValid = isActiveShapeValid(newState);
-    return isValid ? newState : state;
+    const validState = isValid ? newState : state;
+    // check if the shape is 'down', i.e. cannot go any further down
+    const isDown = !isActiveShapeValid(goDown(validState));
+    validState.activeShape.down = isDown;
+    return validState;
 }
 
 const rotateReducer = (state) => {
@@ -190,18 +145,42 @@ const dropReducer = (state) => {
             validState = newState;
         }
     }
+    validState.activeShape.down = true;
     return validState;
 }
 
 const spawnReducer = (state) => {
+    // TODO: spawn + check if spawn collides with grid so gameover is triggered
+    // random number between 0 and 7
+    const randomShapeNum = Math.floor((Math.random() * 7));
     return {
         ...state,
+        nextShapeNum: randomShapeNum,
+        activeShape: {
+            num: state.nextShapeNum,
+            posX: 3,
+            posY: 0,
+            rotation: 0,
+            down: false
+        }
     }
 }
 
-const popReducer = (state) => {
+const lockReducer = (state) => {
+    // lock active shape in grid
+    let newGrid = lockActiveShape(state);
+    // take care of popping rows if necessary
+    const rowsToPop = getRowsToPop(newGrid);
+    if (rowsToPop.length > 0) {
+        console.log(rowsToPop); // TODO: remove debug
+        newGrid = popRows(newGrid, rowsToPop);
+    }
+    const scoreAddition = getPopScore(rowsToPop.length);
+
     return {
         ...state,
+        score: state.score + scoreAddition,
+        grid: newGrid
     }
 }
 
