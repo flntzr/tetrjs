@@ -84,6 +84,17 @@
         @include main-block-size();
         background-color: #EEEEEE;
         padding: 1em;
+
+        #instructions-table {
+            text-align: left;
+            border-spacing: 0.5em 0.8em;
+            td:first-child {
+                // Do not wrap the icons in the first column of the table and center them
+                white-space: nowrap;
+                text-align: center;
+                color: steelblue;
+            }
+        }
     }
 
     #game-over-pane {
