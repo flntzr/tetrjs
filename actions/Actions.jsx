@@ -30,13 +30,13 @@ export const dropAction = () => (
     }
 )
 
-export const spawnAction = (shapeNum) => (
+export const spawnAction = () => (
     {
         type: ActionCodes.SPAWN
     }
 )
 
-export const lockAction = (rowIndices) => (
+export const lockAction = () => (
     {
         type: ActionCodes.LOCK
     }
